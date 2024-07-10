@@ -35,6 +35,7 @@ body{
     justify-content: center;
     align-items: center;
     gap: 20px;
+    margin-bottom: 50px;
 }
 .srch-bar input{
     border: 1px solid transparent;
@@ -55,4 +56,34 @@ body{
     background-color: rgb(39, 66, 115);
     cursor: pointer;
     color: whitesmoke;
+}
+.main-container{
+    display: flex;
+    justify-content: space-around;
+}
+.player-container{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
+    width: 100%;
+    margin: auto;
+    text-align: center;
+}
+.card{
+    border: 1px solid gray;
+    border-radius: 10px;
+    background: rgb(31, 79, 109);
+    box-shadow: 0 15px 10px 0 rgb(109, 177, 179);
+    transition: 0.3s ease-in-out;
+}
+.card:hover{
+    transform: scale(1.05);
+    cursor: pointer;
+}
+.card-img{
+    width: 200px;
+    height: auto;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
