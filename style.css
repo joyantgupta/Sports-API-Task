@@ -6,7 +6,7 @@
 body{
     background-image: url(./bg.jpg);
     font-family: 'Roboto', sans-serif;
-    padding: 100px;
+    padding: 50px;
     padding-top: 0;
 }
 .navigation{
@@ -74,7 +74,6 @@ body{
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    gap: 10px;
     width: 100%;
     margin: auto;
     text-align: center;
@@ -170,4 +169,44 @@ body{
     background-color: rgb(16, 42, 58);
     color: rgb(232, 234, 240);
     transform: scale(1.03);
+}
+.group-container{
+    border: 1px solid whitesmoke;
+    margin-top: 10px;
+    width: 300px;
+    height: 120vh;
+    border-radius: 20px;
+}
+.group-secondary-container{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px 0 10px;
+}
+.group-info{
+    margin: 5px;
+    display: flex;
+    border: 1px solid white;
+    border-radius: 10px;
+    box-shadow: 0 10px 10px 0 rgb(117, 170, 190);
+}
+.group-img{
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+}
+.group-player-name{
+    width: 200px;
+    border-left: none;
+}
+.group-player-name p{
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+.group-player-name p:nth-child(1){
+    color: black;
+    padding-left: 10px;
+    font-weight: bold;
+}
+.group-player-name p:nth-child(2){
+    padding-left: 10px;
 }

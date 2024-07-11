@@ -52,13 +52,16 @@ const displayPlayer = (players) =>
                     </div>
                     <p>${playerDescription}</p>
                     <div class="btn">
-                        <button>Add to group</button>
+                        <button class="add-to-group">Add to group</button>
                         <button>Details</button>
                     </div>
                 </div>
-                
             `;
             playerContainer.appendChild(div);
+
+            div.querySelector('.add-to-group').addEventListener('click', () => {
+                handleAddToGroup(player.strThumb, player.strPlayer, player.strSport);
+            });
         });
     };
 
@@ -83,6 +86,32 @@ document.getElementById("srch").addEventListener("click", () =>
         return;
     }
     document.getElementById("srch-box").value = "";
-})
+});
 
-loadALLPlayer('')
+const handleAddToGroup = (image, name, sport) => 
+{
+    const playerCount = document.getElementById("count").innerText;
+    let convertedCount = parseInt(playerCount);
+    convertedCount += 1;
+    if(convertedCount > 11 )
+    {
+        alert("Selection exceded");
+        return;
+    }
+    document.getElementById("count").innerText = convertedCount;
+
+    const container = document.getElementById("group-main-container")
+    const div = document.createElement("div");
+    div.classList.add("group-info")
+    const playerImage = image ? image : 'unknown.jpg';
+    div.innerHTML = `
+        <img class="group-img" src=${playerImage} alt="${name}" />
+        <div class="group-player-name">
+            <p>${name}</p>
+            <p>${sport}</p>
+        </div>
+    `
+    container.appendChild(div);
+};
+
+loadALLPlayer('');
