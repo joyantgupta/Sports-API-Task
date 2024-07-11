@@ -33,6 +33,7 @@ const displayPlayer = (players) =>
             div.classList.add("card");
             div.dataset.playerId = player.idPlayer;
             const playerImage = player.strThumb ? player.strThumb : 'unknown.jpg';
+            const playerDescription = player.strDescriptionEN ? player.strDescriptionEN.split(' ').slice(0,10).join(' ') + '...' : '';
             div.innerHTML = `
                 <img class = "card-img" src=${playerImage} alt = "${player.strPlayer}" />
                 <h3>${player.strPlayer}</h3>
@@ -48,6 +49,11 @@ const displayPlayer = (players) =>
                     <div class="line-item">
                         <h6 class="nation-one">Sport</h6>
                         <h6 class="nation-two">${player.strSport}</h6>
+                    </div>
+                    <p>${playerDescription}</p>
+                    <div class="btn">
+                        <button>Add to group</button>
+                        <button>Details</button>
                     </div>
                 </div>
                 
@@ -77,7 +83,6 @@ document.getElementById("srch").addEventListener("click", () =>
         return;
     }
     document.getElementById("srch-box").value = "";
-}
-)
+})
 
 loadALLPlayer('')
