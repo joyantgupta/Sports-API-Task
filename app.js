@@ -1,9 +1,24 @@
-const loadALLPlayer = (playerName) =>
+const loadALLPlayer = (playerName, limit = 10) =>
     {
         fetch(`https://www.thesportsdb.com/api/v1/json/3/searchplayers.php?p=${playerName}`)
         .then(res => res.json())
         .then(data => {
-            displayPlayer(data.player);
+            if(data.player)
+            {
+                if(playerName == '')
+                {
+                    const limitedPlayers = data.player.slice(0, limit);
+                    displayPlayer(limitedPlayers);
+                }
+                else
+                {
+                    displayPlayer(data.player);
+                }
+            }
+            else
+            {
+                displayPlayer([]);
+            }
         })
         .catch(error => {
             console.error('Error Fetching data:', error);
@@ -60,7 +75,7 @@ const displayPlayer = (players) =>
             playerContainer.appendChild(div);
 
             div.querySelector('.add-to-group').addEventListener('click', () => {
-                handleAddToGroup(player.strThumb, player.strPlayer, player.strSport);
+                handleAddToGroup(player.strThumb, player.strPlayer, player.strSport, player.idPlayer);
             });
         });
     };
@@ -73,7 +88,7 @@ document.getElementById("srch").addEventListener("click", () =>
     const inputValue = document.getElementById("srch-box").value.trim();
     if(inputValue)
     {
-        loadALLPlayer(inputValue)
+        loadALLPlayer(inputValue, null);
     }
     else
     {
@@ -88,14 +103,21 @@ document.getElementById("srch").addEventListener("click", () =>
     document.getElementById("srch-box").value = "";
 });
 
-const handleAddToGroup = (image, name, sport) => 
+const addedPlayers = [];
+const handleAddToGroup = (image, name, sport, playerId) => 
 {
+    if (addedPlayers.includes(playerId)) {
+        alert("Player already added to the group.");
+        return;
+    }
+    addedPlayers.push(playerId);
+    
     const playerCount = document.getElementById("count").innerText;
     let convertedCount = parseInt(playerCount);
     convertedCount += 1;
     if(convertedCount > 11 )
     {
-        alert("Selection exceded");
+        alert("Selection exceeded");
         return;
     }
     document.getElementById("count").innerText = convertedCount;
@@ -112,6 +134,14 @@ const handleAddToGroup = (image, name, sport) =>
         </div>
     `
     container.appendChild(div);
+
+    const addButton = document.querySelector(`[data-player-id = "${playerId}"] .add-to-group`);
+    addButton.disabled = true;
+    addButton.innerText = "Added";
+    addButton.classList.add("added");
 };
 
-loadALLPlayer('');
+window.onload = () => 
+{
+    loadALLPlayer('', 10);
+};

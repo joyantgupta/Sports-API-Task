@@ -58,6 +58,10 @@ body{
     cursor: pointer;
     color: whitesmoke;
 }
+.comment, .no-srch{
+    padding-bottom: 50%;
+    padding-left: 35%;
+}
 .comment h1, .no-srch h2{
     color: rgb(5, 151, 255);
     background-color: rgb(255, 255, 255);
@@ -75,8 +79,10 @@ body{
     justify-content: space-around;
     flex-wrap: wrap;
     width: 100%;
+    gap: 10px;
     margin: auto;
     text-align: center;
+    justify-content: left;
 }
 .card {
     border: 1px solid gray;
@@ -173,9 +179,10 @@ body{
 .group-container{
     border: 1px solid whitesmoke;
     margin-top: 10px;
-    width: 300px;
+    width: 500px;
     height: 120vh;
     border-radius: 20px;
+    background-color: rgb(31, 79, 109);
 }
 .group-secondary-container{
     display: flex;
@@ -210,3 +217,4 @@ body{
 .group-player-name p:nth-child(2){
     padding-left: 10px;
 }
+
