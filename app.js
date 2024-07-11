@@ -103,15 +103,8 @@ document.getElementById("srch").addEventListener("click", () =>
     document.getElementById("srch-box").value = "";
 });
 
-const addedPlayers = [];
 const handleAddToGroup = (image, name, sport, playerId) => 
 {
-    if (addedPlayers.includes(playerId)) {
-        alert("Player already added to the group.");
-        return;
-    }
-    addedPlayers.push(playerId);
-    
     const playerCount = document.getElementById("count").innerText;
     let convertedCount = parseInt(playerCount);
     convertedCount += 1;
