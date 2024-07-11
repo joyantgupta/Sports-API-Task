@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
     <nav class="navigation">
@@ -46,9 +48,19 @@
                         <div id="playerInfo" class="player-info">
                             <h2 id="playerName"></h2>
                             <p><strong>Nationality:</strong> <span id="playerNationality"></span></p>
+                            <p><strong>Gender</strong> <span id="playerGender"></span></p>
+                            <p><strong>Date of Birth:</strong> <span id="playerBirth"></span></p>
                             <p><strong>Team:</strong> <span id="playerTeam"></span></p>
                             <p><strong>Sport:</strong> <span id="playerSport"></span></p>
                             <p id="playerDescription"></p>
+                            <div class="icon-grid">
+                                <a href="#" id="twitterLink" target="_blank" style="display: none;">
+                                    <i class='bx bxl-twitter'></i>
+                                </a>
+                                <a href="#" id="instagramLink" target="_blank" style="display: none;">
+                                    <i class='bx bxl-instagram'></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
