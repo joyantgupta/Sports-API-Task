@@ -37,7 +37,7 @@ const displayPlayer = (players) =>
             div.classList.add("comment");
             div.innerHTML = `
                 <h1>No players found</h1>
-            `
+            `;
             playerContainer.appendChild(div);
             return;
         }
@@ -68,7 +68,7 @@ const displayPlayer = (players) =>
                     <p>${playerDescription}</p>
                     <div class="btn">
                         <button class="add-to-group">Add to group</button>
-                        <button>Details</button>
+                        <button id="myBtn" class="myBtn">Details</button>
                     </div>
                 </div>
             `;
@@ -77,8 +77,53 @@ const displayPlayer = (players) =>
             div.querySelector('.add-to-group').addEventListener('click', () => {
                 handleAddToGroup(player.strThumb, player.strPlayer, player.strSport, player.idPlayer);
             });
+
+            div.querySelector('.myBtn').addEventListener('click', () => {
+                openModal(player);
+            })
         });
     };
+    const openModal = (player) => {
+        const modal = document.getElementById("playerModal");
+        const playerImage = document.getElementById("playerImage");
+        const playerName = document.getElementById("playerName");
+        const playerNationality = document.getElementById("playerNationality");
+        const playerTeam = document.getElementById("playerTeam");
+        const playerSport = document.getElementById("playerSport");
+        const playerDescription = document.getElementById("playerDescription");
+    
+        modal.style.display = "block";
+    
+        playerImage.src = player.strThumb ? player.strThumb : 'unknown.jpg';
+        playerName.textContent = player.strPlayer;
+        playerNationality.textContent = player.strNationality;
+        playerTeam.textContent = player.strTeam;
+        playerSport.textContent = player.strSport;
+
+        if (player.strDescriptionEN && player.strDescriptionEN.trim() !== '') 
+        {
+            const truncatedDescription = player.strDescriptionEN.split(' ').slice(0, 100).join(' ');
+            playerDescription.textContent = truncatedDescription + (player.strDescriptionEN.split(' ').length > 100 ? '...' : '');
+        } 
+        else 
+        {
+            playerDescription.textContent = 'Description not available.';
+        }
+    };
+    
+    const closeModal = () => {
+        const modal = document.getElementById("playerModal");
+        modal.style.display = "none";
+    };
+    
+    document.querySelector(".close").addEventListener('click', closeModal);
+    
+    window.addEventListener('click', (event) => {
+        const modal = document.getElementById("playerModal");
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    });
 
 document.getElementById("srch").addEventListener("click", () =>
 {
@@ -133,6 +178,7 @@ const handleAddToGroup = (image, name, sport, playerId) =>
     addButton.innerText = "Added";
     addButton.classList.add("added");
 };
+
 
 window.onload = () => 
 {
